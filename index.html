@@ -27,8 +27,18 @@
         .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             font-size: 14px;
+        }
+        .update-date {
+            text-align: center;
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            color: #1976d2;
+            font-weight: 500;
+            font-size: 15px;
         }
         .barometre-grid {
             display: grid;
@@ -107,19 +117,16 @@
             margin: 5px 0;
             color: #856404;
         }
-        .update-info {
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-            margin-top: 30px;
-            font-style: italic;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🌱 Baromètre Digital Clean-Up Day 2026</h1>
-        <p class="subtitle">Suivez notre progression en temps réel</p>
+        <p class="subtitle">Suivez notre progression</p>
+        
+        <div class="update-date">
+            📅 Dernière mise à jour : <span id="last-update"></span>
+        </div>
 
         <div class="last-year">
             <h3>📊 Résultats 2025</h3>
@@ -147,11 +154,11 @@
                     </div>
                     <div class="stats-row">
                         <span class="stats-label">Objectif:</span>
-                        <span class="stats-value">500</span>
+                        <span class="stats-value" id="participants-target">700</span>
                     </div>
                     <div class="stats-row">
                         <span class="stats-label">Restant:</span>
-                        <span class="stats-value" id="participants-remaining">500</span>
+                        <span class="stats-value" id="participants-remaining">700</span>
                     </div>
                 </div>
             </div>
@@ -176,18 +183,14 @@
                     </div>
                     <div class="stats-row">
                         <span class="stats-label">Objectif:</span>
-                        <span class="stats-value">20 000 Go</span>
+                        <span class="stats-value" id="data-target">30 000 Go</span>
                     </div>
                     <div class="stats-row">
                         <span class="stats-label">Restant:</span>
-                        <span class="stats-value" id="data-remaining">20 000 Go</span>
+                        <span class="stats-value" id="data-remaining">30 000 Go</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="update-info">
-            Dernière mise à jour: <span id="last-update"></span>
         </div>
     </div>
 
@@ -195,12 +198,13 @@
         // ============================================
         // CONFIGURATION - MODIFIEZ CES VALEURS
         // ============================================
-        const CURRENT_PARTICIPANTS = 0;    // Nombre actuel de participants
-        const CURRENT_DATA_GB = 0;         // Données actuelles en Go
+        const CURRENT_PARTICIPANTS = 98;       // Nombre actuel de participants
+        const CURRENT_DATA_GB = 8583.2;        // Données actuelles en Go
+        const LAST_UPDATE = "12 février 2026"; // Date de mise à jour
         
         // Objectifs
         const TARGET_PARTICIPANTS = 500;
-        const TARGET_DATA_GB = 20000;
+        const TARGET_DATA_GB = 25000;
         
         // ============================================
         // NE PAS MODIFIER EN DESSOUS DE CETTE LIGNE
@@ -225,6 +229,7 @@
             document.getElementById('participants-value').textContent = formatNumber(CURRENT_PARTICIPANTS);
             document.getElementById('participants-percent').textContent = Math.round(participantsPercent) + '%';
             document.getElementById('participants-current').textContent = formatNumber(CURRENT_PARTICIPANTS);
+            document.getElementById('participants-target').textContent = formatNumber(TARGET_PARTICIPANTS);
             document.getElementById('participants-remaining').textContent = formatNumber(Math.max(0, TARGET_PARTICIPANTS - CURRENT_PARTICIPANTS));
             
             // Données
@@ -232,10 +237,11 @@
             document.getElementById('data-value').textContent = formatNumber(CURRENT_DATA_GB);
             document.getElementById('data-percent').textContent = Math.round(dataPercent) + '%';
             document.getElementById('data-current').textContent = formatNumber(CURRENT_DATA_GB) + ' Go';
+            document.getElementById('data-target').textContent = formatNumber(TARGET_DATA_GB) + ' Go';
             document.getElementById('data-remaining').textContent = formatNumber(Math.max(0, TARGET_DATA_GB - CURRENT_DATA_GB)) + ' Go';
             
             // Date de mise à jour
-            document.getElementById('last-update').textContent = new Date().toLocaleString('fr-CA');
+            document.getElementById('last-update').textContent = LAST_UPDATE;
         }
 
         // Initialiser l'affichage
