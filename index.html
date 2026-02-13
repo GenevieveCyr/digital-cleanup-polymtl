@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baromètre Digital Clean-Up Day 2026</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .barometre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 768px) {
+            .barometre-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .barometre {
+            text-align: center;
+        }
+        .barometre h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .gauge-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+        }
+        .gauge {
+            width: 200px;
+            height: 200px;
+        }
+        .gauge-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+        .gauge-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: -10px;
+        }
+        .stats {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .stats-label {
+            color: #666;
+        }
+        .stats-value {
+            font-weight: bold;
+            color: #333;
+        }
+        .last-year {
+            text-align: center;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .last-year h3 {
+            margin: 0 0 10px 0;
+            color: #856404;
+        }
+        .last-year p {
+            margin: 5px 0;
+            color: #856404;
+        }
+        .update-info {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Baromètre Digital Clean-Up Day 2026</h1>
+        <p class="subtitle">Suivez notre progression en temps réel</p>
+
+        <div class="last-year">
+            <h3>📊 Résultats 2025</h3>
+            <p><strong>171 personnes</strong> ont libéré <strong>10 932 Go</strong> de données</p>
+        </div>
+
+        <div class="barometre-grid">
+            <!-- Baromètre Participants -->
+            <div class="barometre">
+                <h2>👥 Participants</h2>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="20"/>
+                        <circle id="gauge-participants" cx="100" cy="100" r="90" fill="none" stroke="#667eea" stroke-width="20" 
+                                stroke-dasharray="565.48" stroke-dashoffset="565.48" 
+                                transform="rotate(-90 100 100)" stroke-linecap="round"/>
+                    </svg>
+                    <div class="gauge-value" id="participants-value">0</div>
+                </div>
+                <div class="gauge-label" id="participants-percent">0%</div>
+                <div class="stats">
+                    <div class="stats-row">
+                        <span class="stats-label">Actuel:</span>
+                        <span class="stats-value" id="participants-current">0</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">Objectif:</span>
+                        <span class="stats-value">500</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">Restant:</span>
+                        <span class="stats-value" id="participants-remaining">500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Baromètre Données -->
+            <div class="barometre">
+                <h2>💾 Données libérées</h2>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="20"/>
+                        <circle id="gauge-data" cx="100" cy="100" r="90" fill="none" stroke="#10b981" stroke-width="20" 
+                                stroke-dasharray="565.48" stroke-dashoffset="565.48" 
+                                transform="rotate(-90 100 100)" stroke-linecap="round"/>
+                    </svg>
+                    <div class="gauge-value" id="data-value">0</div>
+                </div>
+                <div class="gauge-label" id="data-percent">0%</div>
+                <div class="stats">
+                    <div class="stats-row">
+                        <span class="stats-label">Actuel:</span>
+                        <span class="stats-value" id="data-current">0 Go</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">Objectif:</span>
+                        <span class="stats-value">20 000 Go</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">Restant:</span>
+                        <span class="stats-value" id="data-remaining">20 000 Go</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="update-info">
+            Dernière mise à jour: <span id="last-update"></span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - MODIFIEZ CES VALEURS
+        // ============================================
+        const CURRENT_PARTICIPANTS = 0;    // Nombre actuel de participants
+        const CURRENT_DATA_GB = 0;         // Données actuelles en Go
+        
+        // Objectifs
+        const TARGET_PARTICIPANTS = 500;
+        const TARGET_DATA_GB = 20000;
+        
+        // ============================================
+        // NE PAS MODIFIER EN DESSOUS DE CETTE LIGNE
+        // ============================================
+        
+        function updateGauge(elementId, current, target) {
+            const percentage = Math.min((current / target) * 100, 100);
+            const circumference = 565.48;
+            const offset = circumference - (percentage / 100) * circumference;
+            
+            document.getElementById(elementId).style.strokeDashoffset = offset;
+            return percentage;
+        }
+
+        function formatNumber(num) {
+            return num.toLocaleString('fr-FR');
+        }
+
+        function updateDisplay() {
+            // Participants
+            const participantsPercent = updateGauge('gauge-participants', CURRENT_PARTICIPANTS, TARGET_PARTICIPANTS);
+            document.getElementById('participants-value').textContent = formatNumber(CURRENT_PARTICIPANTS);
+            document.getElementById('participants-percent').textContent = Math.round(participantsPercent) + '%';
+            document.getElementById('participants-current').textContent = formatNumber(CURRENT_PARTICIPANTS);
+            document.getElementById('participants-remaining').textContent = formatNumber(Math.max(0, TARGET_PARTICIPANTS - CURRENT_PARTICIPANTS));
+            
+            // Données
+            const dataPercent = updateGauge('gauge-data', CURRENT_DATA_GB, TARGET_DATA_GB);
+            document.getElementById('data-value').textContent = formatNumber(CURRENT_DATA_GB);
+            document.getElementById('data-percent').textContent = Math.round(dataPercent) + '%';
+            document.getElementById('data-current').textContent = formatNumber(CURRENT_DATA_GB) + ' Go';
+            document.getElementById('data-remaining').textContent = formatNumber(Math.max(0, TARGET_DATA_GB - CURRENT_DATA_GB)) + ' Go';
+            
+            // Date de mise à jour
+            document.getElementById('last-update').textContent = new Date().toLocaleString('fr-CA');
+        }
+
+        // Initialiser l'affichage
+        updateDisplay();
+    </script>
+</body>
+</html>
